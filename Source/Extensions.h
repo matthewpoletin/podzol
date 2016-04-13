@@ -3,7 +3,7 @@
 
 #include <stdlib.h>
 
-#define F_CPU 1000000
+//#define F_CPU 1000000
 #include <util/delay.h>
 
 void * operator new(size_t size);
