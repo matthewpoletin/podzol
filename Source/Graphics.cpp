@@ -17,13 +17,12 @@ bool Graphics::Init(void)
 
 	//u8g_Init8Bit(&u8g, &u8g_dev_ks0108_128x64_fast, PN(PORTC, 0), PN(PORTC, 1), PN(PORTC, 2), PN(PORTC, 3), PN(PORTC, 4), PN(PORTC, 5), PN(PORTC, 6), PN(PORTC, 7), PN(PORTD, 4), PN(PORTD, 0), PN(PORTD, 1), 0, PN(PORTD, 3), PN(PORTD, 2));
 
-
 	return true;
 }
 
 // DrawText(u8g_font_6x10, .., .., ..);
 void Graphics::DrawText(u8g_fntpgm_uint8_t font, char* text, int posX, int posY)
 {
-	u8g_SetFont(&u8g, font);
-	u8g_DrawStr(&u8g, posX, posY, text);
+	//u8g_SetFont(&u8g, font);
+	//u8g_DrawStr(&u8g, posX, posY, text);
 }

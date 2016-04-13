@@ -11,25 +11,29 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
+#include "System.h"
+//#include "Extensions.h"
+
 #include <stdio.h>
 
+extern System* g_system;
+
 int blinkDelayTime = 500;
-bool shouldBlink = false;
+bool shouldBlink = true;
 
 void BlinkLED(int delayTime);
 void BlikLEDInit(void);
 void PrepareToGetInput(void);
 void delay_ms(int ms);
 
-#include "u8glib/u8g.h"
 #include "ADC/adc.h"
 #include "ADXL335/adxl335.h"
+//
+//void sys_init(void);
+//void draw(void);
 
-
-void sys_init(void);
-void draw(void);
-void u8g_setup(void);
-
+//void u8g_setup(void);
+//
 //void SendPulsesInit()
 //{
 	//DDRC = 0x00;
@@ -63,14 +67,6 @@ void u8g_setup(void);
 	//delay_ms(delayTime);
 //}
 
-void delay_ms(int ms)
-{
-	for (int i = 0; i < ms; i++)
-	{
-		_delay_ms(1);
-	}
-}
-
 void BlikLEDInit()
 {
 	//Set the Data Direction Register to output (b pins)
@@ -89,30 +85,35 @@ void BlinkLED(int delayTime)
 	delay_ms(delayTime);
 }
 
+
 int main(void)
 {
+	g_system = new System();
+	if(!g_system->Init()) printf("Error: system initialization failed");
+
+
 	//int x_axis, y_axis, z_axis;
 //
 	//adc_init();
 //
 	//delay_ms(2000);
 //
-	///*if (shouldBlink) */BlikLEDInit();
+	/*if (shouldBlink) */BlikLEDInit();
 //
 	////int pulsesDelayTime = 50;
 	////bool shouldSendPulses = true;
 	////if (shouldSendPulses) SendPulsesInit();
 	//
-	//while(true)
-	//{
-		//if (shouldBlink) BlinkLED(blinkDelayTime);
-		//
-		////if (shouldSendPulses) SendPulses(pulsesDelayTime);
+	while(true)
+	{
+		if (shouldBlink) BlinkLED(blinkDelayTime);
+		
+		//if (shouldSendPulses) SendPulses(pulsesDelayTime);
 		//
 		//x_axis = read_adxl335_x_value(0);
 		//y_axis = read_adxl335_y_value(1);
 		//z_axis = read_adxl335_z_value(2);
-	//}
+	}
 
 	//sys_init();
 	//u8g_setup();
@@ -127,4 +128,5 @@ int main(void)
 		//u8g_Delay(100);
 	//}
 
+	return 0;
 }
