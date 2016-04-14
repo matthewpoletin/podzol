@@ -3,6 +3,7 @@
 
 #include "Extensions.h"
 #include "Graphics.h"
+#include "Accelerometer.h"
 
 class System;
 
@@ -16,12 +17,16 @@ public:
 
 	bool Init(void);
 
+	Graphics* GetGraphics();
+	Accelerometer* GetAccelerometer();
+
 protected:
 private:
 	System(const System &c);
 	System& operator=(const System &c);
 
 	Graphics* m_graphics;
+	Accelerometer* m_accelerometer;
 
 };
 

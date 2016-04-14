@@ -30,42 +30,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 #include <avr/io.h>
 #include "../ADC/adc.h"
 
-
 /*The function is declared to convert the analog x-axis value of ADXL335 to digital value.*/
-
 int read_adxl335_x_value(unsigned char channel);
 
-
 /*The function is declared to convert the analog y-axis value of ADXL335 to digital value.*/
-
 int read_adxl335_y_value(unsigned char channel);
 
-
 /*The function is declared to convert the analog z-axis value of ADXL335 to digital value.*/
-
 int read_adxl335_z_value(unsigned char channel);
-
-
-/*Function definations*/
-int read_adxl335_x_value(unsigned char channel)
-{
-	int x_value;
-	x_value = read_adc_channel(channel);
-	return x_value;
-}
-
-int read_adxl335_y_value(unsigned char channel)
-{
-	int y_value;
-	y_value = read_adc_channel(channel);
-	return y_value;
-}
-
-int read_adxl335_z_value(unsigned char channel)
-{
-	int z_value;
-	z_value = read_adc_channel(channel);
-	return z_value;
-}
 
 #endif

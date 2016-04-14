@@ -1,6 +1,6 @@
 //**************************************************************//
 //System Clock			:1MHz
-//Software				:AVR Studio 4
+//Software				:Atmel Studio 7
 //LCD Data Interfacing	:8-Bit
 //Created:				15.03.2016 13:06:25
 //Author :				Matthew Poletin
@@ -26,26 +26,18 @@ void BlikLEDInit(void);
 void PrepareToGetInput(void);
 void delay_ms(int ms);
 
-#include "ADC/adc.h"
-#include "ADXL335/adxl335.h"
-//
-//void sys_init(void);
-//void draw(void);
-
-//void u8g_setup(void);
-//
 //void SendPulsesInit()
 //{
 	//DDRC = 0x00;
 	//DDRC |= (1<<PC3)|(1<<PC4);
 //}
-//
+
 //void GetPulsesInit()
 //{
 	//DDRC &= ~(1<<PC0|1<<PC1);
 	//printf("%c/n", DDRC);
 //}
-//
+
 //bool CheckPort(int port, int number)
 //{
 	//if((port >> number) & 1)
@@ -55,7 +47,7 @@ void delay_ms(int ms);
 	//}
 	//else return false;
 //}
-//
+
 //void SendPulses(int delayTime)
 //{
 	//PORTC &= ~(1<<PC4);
@@ -85,48 +77,29 @@ void BlinkLED(int delayTime)
 	delay_ms(delayTime);
 }
 
-
 int main(void)
 {
 	g_system = new System();
 	if(!g_system->Init()) printf("Error: system initialization failed");
 
-
-	//int x_axis, y_axis, z_axis;
-//
-	//adc_init();
-//
-	//delay_ms(2000);
-//
 	/*if (shouldBlink) */BlikLEDInit();
-//
-	////int pulsesDelayTime = 50;
-	////bool shouldSendPulses = true;
-	////if (shouldSendPulses) SendPulsesInit();
-	//
+
+	//int pulsesDelayTime = 50;
+	//bool shouldSendPulses = true;
+	//if (shouldSendPulses) SendPulsesInit();
+	
 	while(true)
 	{
 		if (shouldBlink) BlinkLED(blinkDelayTime);
 		
-		//if (shouldSendPulses) SendPulses(pulsesDelayTime);
-		//
-		//x_axis = read_adxl335_x_value(0);
-		//y_axis = read_adxl335_y_value(1);
-		//z_axis = read_adxl335_z_value(2);
-	}
+		g_system->GetGraphics()->DrawText(u8g_font_6x10, "Hello World", 0, 0);
+		g_system->GetAccelerometer()->UpdatePosition();
 
-	//sys_init();
-	//u8g_setup();
-	//
-	//for(;;)
-	//{
-		//u8g_FirstPage(&u8g);
-		//do
-		//{
-			//draw();
-		//} while ( u8g_NextPage(&u8g) );
-		//u8g_Delay(100);
-	//}
+		g_system->GetGraphics()->Update();
+
+		//if (shouldSendPulses) SendPulses(pulsesDelayTime);
+		
+	}
 
 	return 0;
 }
