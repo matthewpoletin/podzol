@@ -3,7 +3,7 @@
 
 #include "Extensions.h"
 #include "Graphics.h"
-#include "Accelerometer.h"
+#include "ADXL335.h"
 
 class System;
 
@@ -18,7 +18,7 @@ public:
 	bool Init(void);
 
 	Graphics* GetGraphics();
-	Accelerometer* GetAccelerometer();
+	ADXL335* GetAccelerometer();
 
 protected:
 private:
@@ -26,7 +26,7 @@ private:
 	System& operator=(const System &c);
 
 	Graphics* m_graphics;
-	Accelerometer* m_accelerometer;
+	ADXL335* m_accelerometer;
 
 };
 

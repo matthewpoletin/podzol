@@ -1,12 +1,12 @@
 #include "adc.h"
 
-void adc_init(void)
+void ADCInit(void)
 {
 	ADCSRA = (1<<ADEN)|(1<<ADSC)|(1<<ADATE)|(1<<ADPS2);
 	SFIOR = 0x00;
 }
 
-int read_adc_channel(unsigned char channel)
+int AnalogRead(unsigned char channel)
 {
 	int adc_value;
 	unsigned char temp;

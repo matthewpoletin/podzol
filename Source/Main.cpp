@@ -67,34 +67,32 @@ void BlikLEDInit()
 
 void BlinkLED(int delayTime)
 {
-	//Set the signal to high
 	PORTB = 0b11111111;
-	//wait 0.5 sec
 	delay_ms(delayTime);
-	//Set the signal to low
 	PORTB = 0b00000000;
-	//wait 0.5 sec
 	delay_ms(delayTime);
 }
 
 int main(void)
 {
 	g_system = new System();
-	if(!g_system->Init()) printf("Error: system initialization failed");
+	g_system->Init();
 
-	/*if (shouldBlink) */BlikLEDInit();
+	/*if (shouldBlink) */
+	//BlikLEDInit();
 
 	//int pulsesDelayTime = 50;
 	//bool shouldSendPulses = true;
 	//if (shouldSendPulses) SendPulsesInit();
 	
+	delay_ms(5000);
+
 	while(true)
 	{
-		if (shouldBlink) BlinkLED(blinkDelayTime);
-		
-		g_system->GetGraphics()->DrawText(u8g_font_6x10, "Hello World", 0, 0);
-		g_system->GetAccelerometer()->UpdatePosition();
+		//if (shouldBlink) BlinkLED(blinkDelayTime);
+		g_system->GetAccelerometer()->Update();
 
+		g_system->GetGraphics()->DrawText(u8g_font_4x6, "Hello World", 5, 10);
 		g_system->GetGraphics()->Update();
 
 		//if (shouldSendPulses) SendPulses(pulsesDelayTime);
