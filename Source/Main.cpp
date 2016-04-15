@@ -7,12 +7,10 @@
 //**************************************************************//
 
 #include <avr/io.h>
-//#define F_CPU 1000000
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
 #include "System.h"
-//#include "Extensions.h"
 
 #include <stdio.h>
 
@@ -25,39 +23,6 @@ void BlinkLED(int delayTime);
 void BlikLEDInit(void);
 void PrepareToGetInput(void);
 void delay_ms(int ms);
-
-//void SendPulsesInit()
-//{
-	//DDRC = 0x00;
-	//DDRC |= (1<<PC3)|(1<<PC4);
-//}
-
-//void GetPulsesInit()
-//{
-	//DDRC &= ~(1<<PC0|1<<PC1);
-	//printf("%c/n", DDRC);
-//}
-
-//bool CheckPort(int port, int number)
-//{
-	//if((port >> number) & 1)
-	//{
-		//BlinkLED(250);
-		//return true;
-	//}
-	//else return false;
-//}
-
-//void SendPulses(int delayTime)
-//{
-	//PORTC &= ~(1<<PC4);
-	//PORTC |= (1<<PC3);
-	//if (CheckPort(PORTC, 1)) shouldBlink = true;
-	//delay_ms(delayTime);
-	//PORTC &= ~(1<<PC3);
-	//PORTC |= (1<<PC4);
-	//delay_ms(delayTime);
-//}
 
 void BlikLEDInit()
 {
@@ -78,25 +43,29 @@ int main(void)
 	g_system = new System();
 	g_system->Init();
 
-	/*if (shouldBlink) */
-	//BlikLEDInit();
+	delay_ms(2500);
 
-	//int pulsesDelayTime = 50;
-	//bool shouldSendPulses = true;
-	//if (shouldSendPulses) SendPulsesInit();
-	
-	delay_ms(5000);
+	int x, y, z;
+
+	char line1[50], line2[50], line3[50];
 
 	while(true)
 	{
-		//if (shouldBlink) BlinkLED(blinkDelayTime);
 		g_system->GetAccelerometer()->Update();
 
-		g_system->GetGraphics()->DrawText(u8g_font_4x6, "Hello World", 5, 10);
-		g_system->GetGraphics()->Update();
+		x = g_system->GetAccelerometer()->GetX();
+		y = g_system->GetAccelerometer()->GetY();
+		z = g_system->GetAccelerometer()->GetZ();
 
-		//if (shouldSendPulses) SendPulses(pulsesDelayTime);
-		
+		sprintf(line1, "x:%2d", x);
+		sprintf(line2, "y:%2d", y);
+		sprintf(line3, "z:%2d", z);
+
+		g_system->GetGraphics()->DrawText(u8g_font_4x6, line1, 0, 6);
+		g_system->GetGraphics()->DrawText(u8g_font_4x6, line2, 5, 12);
+		g_system->GetGraphics()->DrawText(u8g_font_4x6, line3, 10, 18);
+
+		g_system->GetGraphics()->Update();
 	}
 
 	return 0;

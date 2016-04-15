@@ -14,8 +14,8 @@ public:
 	void SetThreshold(float deadzone);
 	bool getFreefall();
 	float GetX();
-	float getY();
-	float getZ();
+	float GetY();
+	float GetZ();
 	float getRho();
 	float getPhi();
 	float getTheta();

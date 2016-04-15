@@ -7,7 +7,6 @@ System::System()
 	m_graphics = new Graphics();
 	
 	m_accelerometer = new ADXL335();
-
 }
 
 System::~System()

@@ -20,6 +20,10 @@ bool ADXL335::Init(int pin_x, int pin_y, int pin_z, float aref)
 	_bias = aref / 2.0;
 	_rad2deg = 180.0 / M_PI;
 
+	ADCInit();
+
+	DDRA |= (1<<PA0)|(1<<PA1)|(1<<PA2);
+
 	return true;
 }
 
@@ -109,12 +113,12 @@ float ADXL335::GetX()
 	return _xg;
 }
 
-float ADXL335::getY()
+float ADXL335::GetY()
 {
 	return _yg;
 }
 
-float ADXL335::getZ()
+float ADXL335::GetZ()
 {
 	return _zg;
 }

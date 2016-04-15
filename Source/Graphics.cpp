@@ -20,9 +20,22 @@ bool Graphics::Init(void)
 	u8g_SetPinInput(PN(2,6)); u8g_SetPinLevel(PN(2,6), 1); u8g_SetPinOutput(PN(2,6));
 	u8g_SetPinInput(PN(2,7)); u8g_SetPinLevel(PN(2,7), 1); u8g_SetPinOutput(PN(2,7));
 
+	u8g_SetPinInput(PN(3,0)); u8g_SetPinLevel(PN(3,0), 1); u8g_SetPinOutput(PN(3,0));
+	u8g_SetPinInput(PN(3,1)); u8g_SetPinLevel(PN(3,1), 1); u8g_SetPinOutput(PN(3,1));
+	u8g_SetPinInput(PN(3,2)); u8g_SetPinLevel(PN(3,2), 1); u8g_SetPinOutput(PN(3,2));
+	u8g_SetPinInput(PN(3,3)); u8g_SetPinLevel(PN(3,3), 1); u8g_SetPinOutput(PN(3,3));
+	u8g_SetPinInput(PN(3,4)); u8g_SetPinLevel(PN(3,4), 1); u8g_SetPinOutput(PN(3,4));
+
+
 	m_device = u8g_dev_ks0108_128x64;
 
-	u8g_Init8Bit(&m_u8g, &u8g_dev_ks0108_128x64_fast, PN(2, 0), PN(2, 1), PN(2, 2), PN(2, 3), PN(2, 4), PN(2, 5), PN(2, 6), PN(2, 7), PN(3, 4), PN(3, 0), PN(3, 1), 0, PN(3, 3), PN(3, 2));
+	//u8g_Init8Bit(&m_u8g, &u8g_dev_ks0108_128x64_fast, PN(2, 0), PN(2, 1), PN(2, 2), PN(2, 3), PN(2, 4), PN(2, 5), PN(2, 6), PN(2, 7), PN(3, 4), PN(3, 0), PN(3, 1), 0, PN(3, 3), PN(3, 2));
+
+	u8g_Init8Bit(&m_u8g, &m_device, PN(2,0), PN(2,1), PN(2,2), PN(2,3), PN(2,4), PN(2,5), PN(2,6), PN(2,7), PN(3, 0), PN(3,3), PN(3,4), PN(3,2), PN(3,1), 0);
+
+	//u8g_SetContrast(&m_u8g, 5);
+
+	u8g_SetFontPosBottom(&m_u8g);
 
 	u8g_FirstPage(&m_u8g);
 
@@ -38,6 +51,9 @@ void Graphics::DrawText(const u8g_fntpgm_uint8_t* font, char* text, int posX, in
 
 void Graphics::Update(void)
 {
+	//u8g_DrawLine(&m_u8g, 0, 0, 5, 5);
+	//u8g_DrawLine(&m_u8g, 0, 5, 5, 0);
+
 	u8g_NextPage(&m_u8g);
 }
 
