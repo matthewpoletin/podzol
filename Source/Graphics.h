@@ -1,7 +1,11 @@
 #ifndef __GRAPHICS_H__
 #define __GRAPHICS_H__
 
+#include <string.h>
+
 #include "u8glib/u8g.h"
+
+#include "MyString/MyString.h"
 
 class Graphics
 {
@@ -10,8 +14,8 @@ public:
 	~Graphics();
 
 	bool Init(void);
-	void DrawText(const u8g_fntpgm_uint8_t* font, char* text, int posX, int posY);
 	void Update(void);
+	void DrawText(const u8g_fntpgm_uint8_t* font, MyString text, int posX, int posY);
 
 protected:
 private:

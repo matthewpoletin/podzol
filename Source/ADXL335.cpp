@@ -22,7 +22,7 @@ bool ADXL335::Init(int pin_x, int pin_y, int pin_z, float aref)
 
 	ADCInit();
 
-	DDRA |= (1<<PA0)|(1<<PA1)|(1<<PA2);
+	DDRA &= ~((1<<PA0)|(1<<PA1)|(1<<PA2));
 
 	return true;
 }
@@ -60,7 +60,7 @@ void ADXL335::processDeadzone(float* gv)
 	}
 }
 
-float ADXL335::getGravity(int reading)
+float ADXL335::GetGravity(int reading)
 {  
 	float voltage = reading * m_aref;
 	voltage /= 1024.0;
@@ -140,7 +140,7 @@ float ADXL335::getTheta()
 
 void ADXL335::Update()
 {
-	_xg = getGravity(AnalogRead(m_pin_x));
-	_yg = getGravity(AnalogRead(m_pin_y));
-	_zg = getGravity(AnalogRead(m_pin_z));
+	_xg = GetGravity(AnalogRead(m_pin_x));
+	_yg = GetGravity(AnalogRead(m_pin_y));
+	_zg = GetGravity(AnalogRead(m_pin_z));
 }

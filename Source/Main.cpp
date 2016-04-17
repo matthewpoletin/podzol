@@ -6,13 +6,15 @@
 //Author :				Matthew Poletin
 //**************************************************************//
 
+#include <stdio.h>
+#include <string.h>
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
 #include "System.h"
-
-#include <stdio.h>
+#include "MyString/MyString.h"
 
 extern System* g_system;
 
@@ -46,16 +48,18 @@ int main(void)
 	delay_ms(2500);
 
 	int x, y, z;
+	char data[1];
 
 	char line1[50], line2[50], line3[50];
 
 	while(true)
 	{
 		g_system->GetAccelerometer()->Update();
-
 		x = g_system->GetAccelerometer()->GetX();
 		y = g_system->GetAccelerometer()->GetY();
 		z = g_system->GetAccelerometer()->GetZ();
+
+		data[0] = g_system->GetSR()->Update(500);
 
 		sprintf(line1, "x:%2d", x);
 		sprintf(line2, "y:%2d", y);
@@ -65,7 +69,10 @@ int main(void)
 		g_system->GetGraphics()->DrawText(u8g_font_4x6, line2, 5, 12);
 		g_system->GetGraphics()->DrawText(u8g_font_4x6, line3, 10, 18);
 
+		g_system->GetGraphics()->DrawText(u8g_font_4x6, MyString(data), 0 , 24);
+
 		g_system->GetGraphics()->Update();
+
 	}
 
 	return 0;

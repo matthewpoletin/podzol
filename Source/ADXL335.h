@@ -25,7 +25,7 @@ private:
 	float geta2d(float gx, float gy);
 	float geta3d(float gx, float gy, float gz);
 	void processDeadzone(float* gv);
-	float getGravity(int reading);
+	float GetGravity(int reading);
 	float _getRho(float ax, float ay, float az);
 	float _getPhi(float ax, float ay, float az);
 	float _getTheta(float ax, float ay, float az);

@@ -4,6 +4,7 @@
 #include "Extensions.h"
 #include "Graphics.h"
 #include "ADXL335.h"
+#include "ShiftRegister.h"
 
 class System;
 
@@ -17,17 +18,18 @@ public:
 
 	bool Init(void);
 
-	Graphics* GetGraphics();
-	ADXL335* GetAccelerometer();
+	Graphics* GetGraphics(void);
+	ADXL335* GetAccelerometer(void);
+	ShiftRegister* GetSR(void);
 
 protected:
 private:
 	System(const System &c);
 	System& operator=(const System &c);
 
-	Graphics* m_graphics;
-	ADXL335* m_accelerometer;
-
+	Graphics* m_pGraphics;
+	ADXL335* m_pAccelerometer;
+	ShiftRegister* m_pSR;
 };
 
 #endif //__SYSTEM_H__

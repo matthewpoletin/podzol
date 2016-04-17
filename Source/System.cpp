@@ -4,9 +4,11 @@ System* g_system;
 
 System::System()
 {
-	m_graphics = new Graphics();
+	m_pGraphics = new Graphics();
 	
-	m_accelerometer = new ADXL335();
+	m_pAccelerometer = new ADXL335();
+
+	m_pSR = new ShiftRegister();
 }
 
 System::~System()
@@ -15,19 +17,26 @@ System::~System()
 
 bool System::Init(void)
 {
-	this->m_graphics->Init();
+	this->m_pGraphics->Init();
 
-	m_accelerometer->Init(0, 1, 2, 3.3f);
+	m_pAccelerometer->Init(0, 1, 2, 3.3f);
+
+	m_pSR->Init(PN(1,5), PN(1,6), PN(1,7));
 
 	return true;
 }
 
 Graphics* System::GetGraphics(void)
 {
-	return m_graphics;
+	return m_pGraphics;
 }
 
 ADXL335* System::GetAccelerometer(void)
 {
-	return m_accelerometer;
+	return m_pAccelerometer;
+}
+
+ShiftRegister* System::GetSR(void)
+{
+	return m_pSR;
 }
