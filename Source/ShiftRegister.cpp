@@ -36,6 +36,7 @@ char ShiftRegister::Update(int delayTime)
 		u8g_SetPinLevel(m_pinClock, 0);
 		delay_us(delayTime);
 	}
+	m_data = output;
 	return output;
 }
 

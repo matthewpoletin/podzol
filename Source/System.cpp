@@ -21,7 +21,7 @@ bool System::Init(void)
 
 	m_pAccelerometer->Init(0, 1, 2, 3.3f);
 
-	m_pSR->Init(PN(1,5), PN(1,6), PN(1,7));
+	//m_pSR->Init(PN(1,5), PN(1,6), PN(1,7));
 
 	return true;
 }

@@ -1,7 +1,6 @@
 #ifndef __POINT_H__
 #define __POINT_H__
 
-//#include <iostream.h>
 #include <math.h>
 
 class Point
@@ -29,8 +28,6 @@ public:
 	Point& operator-=(const Point& other);
 	Point& operator*=(const Point& other);
 	Point& operator/=(const Point& other);
-
-	//friend std::ostream& operator<<(std::ostream& stream, const Point& vector);
 
 protected:
 private:

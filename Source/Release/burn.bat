@@ -1,0 +1,1 @@
+C:\WinAVR-20100110\bin\avrdude.exe -c usbasp -p m32 -B12 -U flash:w:podzol.hex:i

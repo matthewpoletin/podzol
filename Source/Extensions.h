@@ -3,10 +3,9 @@
 
 #include <stdlib.h>
 
-//#define F_CPU 1000000
 #include <util/delay.h>
 
-void* operator new  (size_t count);
+void* operator new(size_t count);
 void operator delete(void * ptr);
 
 void delay_ms(int ms);

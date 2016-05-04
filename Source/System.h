@@ -2,7 +2,7 @@
 #define __SYSTEM_H__
 
 #include "Extensions.h"
-#include "Graphics.h"
+#include "Graphics/Graphics.h"
 #include "ADXL335.h"
 #include "ShiftRegister.h"
 
