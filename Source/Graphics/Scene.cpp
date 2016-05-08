@@ -2,10 +2,10 @@
 
 Scene::Scene() : m_size(0)
 {
-	for (unsigned int counter = 0; counter < sceneLimit; counter++)
-	{
-		m_pObjects[counter] = nullptr;
-	}
+	//for (unsigned int counter = 0; counter < sceneLimit; counter++)
+	//{
+		//m_pObjects[counter] = nullptr;
+	//}
 }
 
 Scene::~Scene()
@@ -26,8 +26,9 @@ void Scene::Insert(IObject* pOject)
 
 void Scene::Clear(void)
 {
-	for (unsigned int counter = 0; counter < sceneLimit; counter++)
+	for (unsigned int counter = 0; counter < m_size; counter++)
 	{
+		delete m_pObjects[counter];
 		m_pObjects[counter] = nullptr;
 	}
 	m_size = 0;

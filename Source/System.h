@@ -18,9 +18,9 @@ public:
 
 	bool Init(void);
 
-	Graphics* GetGraphics(void);
-	ADXL335* GetAccelerometer(void);
-	ShiftRegister* GetSR(void);
+	inline Graphics* GetGraphics(void) { return m_pGraphics; }
+	inline ADXL335* GetAccelerometer(void) { return m_pAccelerometer; }
+	inline ShiftRegister* GetSR(void) { return m_pSR; }
 
 protected:
 private:

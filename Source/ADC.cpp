@@ -20,7 +20,7 @@ int AnalogRead(unsigned char channel)
 	int adc_value;
 	unsigned char temp;
 	ADMUX = (1 << REFS0) | channel;
-	_delay_ms(1);
+	//_delay_ms(1);
 	temp = ADCL;
 	adc_value = ADCH;
 	adc_value = (adc_value << 8) | temp;

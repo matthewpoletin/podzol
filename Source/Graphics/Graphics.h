@@ -5,9 +5,13 @@
 
 #include "u8glib/u8g.h"
 
-#include "../Maths/Point.h"
 #include "../MyCpp/MyString.h"
 #include "Scene.h"
+#include "Objects/Pixel.h"
+#include "Objects/Text.h"
+#include "Objects/Line.h"
+//#include "Objects/Circle.h"
+#include "Objects/Bitmap.h"
 
 class Graphics
 {
@@ -19,9 +23,11 @@ public:
 	void Update(void);
 	void Clear(void);
 
+	void DrawPixel(Vec2i pos);
 	void DrawText(const u8g_fntpgm_uint8_t* font, MyString text, Vec2i pos);
-	void DrawLine(Point p1, Point p2);
-	void DrawBitmap(Point pos, const uint8_t* bitmap);
+	void DrawLine(Vec2i p1, Vec2i p2);
+	//void DrawCircle(Vec2i pos, Vec2i rad);
+	void DrawBitmap(Vec2i pos, const uint8_t* bitmap);
 
 protected:
 private:

@@ -2,7 +2,6 @@
 #define __SCENE_H__
 
 #include "Objects/IObject.h"
-#include "Objects/Text.h"
 
 #include <u8glib/u8g.h>
 

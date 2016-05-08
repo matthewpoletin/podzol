@@ -11,18 +11,18 @@ public:
 	ShiftRegister();
 	~ShiftRegister();
 
-	bool Init(uint8_t pinInput, uint8_t pinLatch, uint8_t pinClock);
+	bool Init(uint8_t pinData, uint8_t pinLatch, uint8_t pinClock);
 
-	char Update(int delayTime);
+	void Update(int delayTimeUS);
 
-	char GetData(void);
+	inline char GetData(void) { return m_data; }
 
 protected:
 private:
 	ShiftRegister( const ShiftRegister &c );
 	ShiftRegister& operator=( const ShiftRegister &c );
 
-	uint8_t m_pinInput;
+	uint8_t m_pinData;
 	uint8_t m_pinLatch;
 	uint8_t m_pinClock;
 

@@ -62,18 +62,25 @@ void Graphics::Clear(void)
 	} while( u8g_NextPage(&m_u8g) );
 }
 
+void Graphics::DrawPixel(Vec2i pos)
+{
+	Pixel* pPixel = new Pixel(pos);
+	m_pScene->Insert(pPixel);
+}
+
 void Graphics::DrawText(const u8g_fntpgm_uint8_t* font, MyString text, Vec2i pos)
 {
 	Text* pText = new Text(pos, text, font);
 	m_pScene->Insert(pText);
 }
 
-void Graphics::DrawLine(Point p1, Point p2)
+void Graphics::DrawLine(Vec2i p1, Vec2i p2)
 {
-	u8g_DrawLine(&m_u8g, p1.x, p1.y, p2.x, p2.y);
+	Line* pLine = new Line(p1, p2);
+	m_pScene->Insert(pLine);
 }
 
-void Graphics::DrawBitmap(Point pos, const uint8_t* bitmap)
+void Graphics::DrawBitmap(Vec2i pos, const uint8_t* bitmap)
 {
-	u8g_DrawBitmap(&m_u8g, pos.x, pos.y, 1, 8, bitmap);
+	Bitmap* pBitmap = new Bitmap(bitmap, pos);
 }
