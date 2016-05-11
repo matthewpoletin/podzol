@@ -2,6 +2,8 @@
 
 #include <math.h>
 
+#include <u8glib/u8g.h>
+
 ADXL335::ADXL335()
 {
 }
@@ -21,6 +23,8 @@ bool ADXL335::Init(int pin_x, int pin_y, int pin_z, float aref)
 	_rad2deg = 180.0 / M_PI;
 
 	ADCInit();
+
+	u8g_SetPinInput(PN(0,0));
 
 	DDRA &= ~((1<<PA0)|(1<<PA1)|(1<<PA2));
 

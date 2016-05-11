@@ -6,7 +6,7 @@ System::System()
 {
 	m_pGraphics = new Graphics();
 	
-	m_pAccelerometer = new ADXL335();
+	//m_pAccelerometer = new ADXL335();
 
 	m_pSR = new ShiftRegister();
 }

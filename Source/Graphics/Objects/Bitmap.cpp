@@ -6,7 +6,7 @@ Bitmap::Bitmap(const uint8_t* bitmap, Vec2i pos) : m_pBitmap(bitmap), m_pos(pos)
 
 Bitmap::~Bitmap()
 {
-	delete m_pBitmap;
+	//delete m_pBitmap;
 }
 
 void Bitmap::Draw(u8g_t* u8g)
