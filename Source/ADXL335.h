@@ -1,5 +1,5 @@
-#ifndef __ADXL335_H__
-#define __ADXL335_h__
+#ifndef __ADXL__
+#define __ADXL__
 
 #include "ADC.h"
 
@@ -13,9 +13,9 @@ public:
 
 	void SetThreshold(float deadzone);
 	bool getFreefall();
-	float GetX();
-	float GetY();
-	float GetZ();
+	inline int GetX() { return m_xg; }
+	inline int GetY() { return m_yg; }
+	inline int GetZ() { return m_zg; }
 	float getRho();
 	float getPhi();
 	float getTheta();
@@ -34,9 +34,9 @@ private:
 	int m_pin_y;
 	int m_pin_z;
 	float _bias;
-	float _xg;
-	float _yg;
-	float _zg;
+	int m_xg;
+	int m_yg;
+	int m_zg;
 	float m_aref;
 	float _mvG;
 	float _deadzone;
@@ -44,4 +44,4 @@ private:
 
 };
 
-#endif
+#endif // ADXL

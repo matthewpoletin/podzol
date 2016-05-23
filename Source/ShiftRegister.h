@@ -26,7 +26,7 @@ private:
 	uint8_t m_pinLatch;
 	uint8_t m_pinClock;
 
-	char m_data;
+	unsigned char m_data;
 
 };
 

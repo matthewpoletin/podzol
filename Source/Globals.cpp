@@ -26,3 +26,13 @@ void DrawBitmap(const uint8_t* bitmap, int posX, int posY, int height)
 {
 	g_system->GetGraphics()->DrawBitmap(Vec2i(posX, posY), bitmap);
 }
+//
+//void GetSystem(void)
+//{
+	//return g_system;
+//}
+//
+//void GetADC(void)
+//{
+	//return g_system->GetADC();
+//}

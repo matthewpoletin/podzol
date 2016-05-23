@@ -4,8 +4,20 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-void ADCInit(void);
+class ADConv
+{
+public:
+	ADConv();
+	~ADConv();
 
-int AnalogRead(unsigned char channel);
+	bool Init(void);
 
-#endif
+	uint8_t Read(unsigned char ch);
+
+protected:
+private:
+
+
+};
+
+#endif // __ADC_H__

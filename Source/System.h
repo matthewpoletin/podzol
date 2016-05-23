@@ -5,6 +5,7 @@
 #include "Graphics/Graphics.h"
 #include "ADXL335.h"
 #include "ShiftRegister.h"
+#include "ADC.h"
 
 class System;
 
@@ -21,6 +22,7 @@ public:
 	inline Graphics* GetGraphics(void) { return m_pGraphics; }
 	inline ADXL335* GetAccelerometer(void) { return m_pAccelerometer; }
 	inline ShiftRegister* GetSR(void) { return m_pSR; }
+	inline ADConv* GetADC(void) { return m_pADC; }
 
 protected:
 private:
@@ -28,6 +30,7 @@ private:
 	System& operator=(const System &c);
 
 	Graphics* m_pGraphics;
+	ADConv* m_pADC;
 	ADXL335* m_pAccelerometer;
 	ShiftRegister* m_pSR;
 };

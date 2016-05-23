@@ -4,6 +4,9 @@
 
 #include <u8glib/u8g.h>
 
+#include "System.h"
+extern System* g_system;
+
 ADXL335::ADXL335()
 {
 }
@@ -21,12 +24,6 @@ bool ADXL335::Init(int pin_x, int pin_y, int pin_z, float aref)
 	_mvG = aref / 10.0;
 	_bias = aref / 2.0;
 	_rad2deg = 180.0 / M_PI;
-
-	ADCInit();
-
-	u8g_SetPinInput(PN(0,0));
-
-	DDRA &= ~((1<<PA0)|(1<<PA1)|(1<<PA2));
 
 	return true;
 }
@@ -82,7 +79,7 @@ float ADXL335::GetGravity(int reading)
 
 float ADXL335::_getRho(float ax, float ay, float az)
 {
-	return geta3d(_xg,_yg,_zg);
+	return geta3d(m_xg, m_yg, m_zg);
 }
 
 float ADXL335::_getPhi(float ax, float ay, float az)
@@ -109,42 +106,27 @@ void ADXL335::SetThreshold(float deadzone)
 bool ADXL335::getFreefall()
 {
 	//if all three vectors read zero then return true, otherwise; false.
-	return _xg == 0.0 && _yg == 0.0 && _zg == 0.0;
-}
-
-float ADXL335::GetX()
-{
-	return _xg;
-}
-
-float ADXL335::GetY()
-{
-	return _yg;
-}
-
-float ADXL335::GetZ()
-{
-	return _zg;
+	return m_xg == 0.0 && m_yg == 0.0 && m_zg == 0.0;
 }
 
 float ADXL335::getRho()
 {
-	return _getRho(_xg,_yg,_zg);
+	return _getRho(m_xg,m_yg,m_zg);
 }
 
 float ADXL335::getPhi()
 {
-	return _getPhi(_xg,_yg,_zg);
+	return _getPhi(m_xg,m_yg,m_zg);
 }
 
 float ADXL335::getTheta()
 {
-	return _getTheta(_xg,_yg,_zg);
+	return _getTheta(m_xg,m_yg,m_zg);
 }
 
 void ADXL335::Update()
 {
-	_xg = GetGravity(AnalogRead(m_pin_x));
-	_yg = GetGravity(AnalogRead(m_pin_y));
-	_zg = GetGravity(AnalogRead(m_pin_z));
+	m_xg = g_system->GetADC()->Read(m_pin_x);
+	m_yg = g_system->GetADC()->Read(m_pin_y);
+	m_zg = g_system->GetADC()->Read(m_pin_z);
 }

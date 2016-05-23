@@ -82,5 +82,6 @@ void Graphics::DrawLine(Vec2i p1, Vec2i p2)
 
 void Graphics::DrawBitmap(Vec2i pos, const uint8_t* bitmap)
 {
-	Bitmap* pBitmap = new Bitmap(bitmap, pos);
+	//Bitmap* pBitmap = new Bitmap(bitmap, pos);
+	//m_pScene->Insert(pBitmap);
 }
