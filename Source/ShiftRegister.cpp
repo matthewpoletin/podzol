@@ -39,7 +39,7 @@ void ShiftRegister::Update(int delayTimeUS)
 		if (temp)
 		{
 			pinState = 1;
-			data = data | (1<<i);
+			data |= (1<<i);
 		}
 		else
 		{

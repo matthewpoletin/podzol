@@ -33,6 +33,7 @@ int main(void)
 	char accelYline[50];
 	char accelZline[50];
 
+	unsigned char srData;
 	char srDataLine[50];
 
 	//const uint8_t rook_bitmap[] PROGMEM = {
@@ -59,8 +60,8 @@ int main(void)
 		accelZ = g_system->GetAccelerometer()->GetZ();
 
 		g_system->GetSR()->Update(1000);
-		//srData = g_system->GetSR()->GetData();
-		sprintf(srDataLine, "input: %1c", g_system->GetSR()->GetData());
+		srData = g_system->GetSR()->GetData();
+		sprintf(srDataLine, "input: %1c", srData);
 
 		sprintf(accelXline, "x: %4d", accelX);
 		sprintf(accelYline, "y: %4d", accelY);
@@ -70,7 +71,13 @@ int main(void)
 		DrawText(u8g_font_4x6, accelYline, 0, 12);
 		DrawText(u8g_font_4x6, accelZline, 0, 18);
 
-		DrawText(u8g_font_4x6, srDataLine, 0, 24);
+		for (unsigned int butCounter = 0; butCounter <8; butCounter++)
+		{
+			if(!((srData >> butCounter) & 1))
+			{
+				DrawText(u8g_font_4x6, "Button " + &(char)(butCounter+1) + " pressed", 0, 30 + butCounter * 6);
+			}
+		}
 		//DrawBitmap(rook_bitmap, 40, 40, 8);
 
 		itoa(uiIterator, cIterator, 10);
