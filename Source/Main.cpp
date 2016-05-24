@@ -33,9 +33,6 @@ int main(void)
 	char accelYline[50];
 	char accelZline[50];
 
-	unsigned char srData;
-	char srDataLine[50];
-
 	//const uint8_t rook_bitmap[] PROGMEM = {
 		//0b00000000,         // 00000000
 		//0b01010101,         // 01010101
@@ -59,9 +56,7 @@ int main(void)
 		accelY = g_system->GetAccelerometer()->GetY();
 		accelZ = g_system->GetAccelerometer()->GetZ();
 
-		g_system->GetSR()->Update(1000);
-		srData = g_system->GetSR()->GetData();
-		sprintf(srDataLine, "input: %1c", srData);
+		g_system->GetController()->Update();
 
 		sprintf(accelXline, "x: %4d", accelX);
 		sprintf(accelYline, "y: %4d", accelY);
@@ -71,11 +66,12 @@ int main(void)
 		DrawText(u8g_font_4x6, accelYline, 0, 12);
 		DrawText(u8g_font_4x6, accelZline, 0, 18);
 
-		for (unsigned int butCounter = 0; butCounter <8; butCounter++)
+		for(unsigned int butCounter = 0; butCounter < 8; butCounter++)
 		{
-			if(!((srData >> butCounter) & 1))
+			if(g_system->GetController()->IsKeyClicked(butCounter))
 			{
-				DrawText(u8g_font_4x6, "Button " + &(char)(butCounter+1) + " pressed", 0, 30 + butCounter * 6);
+				DrawText(u8g_font_4x6, "Key   clicked",	0, 24 + butCounter * 6);
+				DrawText(u8g_font_4x6, itoa(1, nullptr, 10), 4, 24 + butCounter * 6);
 			}
 		}
 		//DrawBitmap(rook_bitmap, 40, 40, 8);

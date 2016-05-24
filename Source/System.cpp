@@ -9,7 +9,8 @@ System::System()
 	m_pADC = new ADConv();
 	m_pAccelerometer = new ADXL335();
 
-	m_pSR = new ShiftRegister();
+	m_pController = new Controller();
+
 }
 
 System::~System()
@@ -24,7 +25,7 @@ bool System::Init(void)
 
 	m_pAccelerometer->Init(0, 1, 2, 3.3f);
 
-	m_pSR->Init(PN(2,0), PN(2,2), PN(2,1));
+	m_pController ->Init();
 
 	return true;
 }

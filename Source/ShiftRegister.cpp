@@ -24,7 +24,7 @@ bool ShiftRegister::Init(uint8_t pinData, uint8_t pinLatch, uint8_t pinClock)
 void ShiftRegister::Update(int delayTimeUS)
 {
 	u8g_SetPinLevel(m_pinLatch, 1);
-	delay_ms(20);
+	delay_us(20);
 	u8g_SetPinLevel(m_pinLatch, 0);
 
 	int temp = 0;
@@ -34,7 +34,7 @@ void ShiftRegister::Update(int delayTimeUS)
 	for(unsigned int i = 0; i != 8; i++)
 	{
 		u8g_SetPinLevel(m_pinClock, 0);
-		delay_ms(1);
+		_delay_us(0.2);
 		temp = u8g_GetPinLevel(m_pinData);
 		if (temp)
 		{
