@@ -26,9 +26,9 @@ int main(void)
 	g_system = new System();
 	g_system->Init();
 
-	int accelX = 0;
-	int accelY = 0;
-	int accelZ = 0;
+	int iAccelX = 0;
+	int iAccelY = 0;
+	int iAccelZ = 0;
 	char accelXline[50];
 	char accelYline[50];
 	char accelZline[50];
@@ -52,28 +52,61 @@ int main(void)
 		g_system->GetGraphics()->Update();
 
 		g_system->GetAccelerometer()->Update();
-		accelX = g_system->GetAccelerometer()->GetX();
-		accelY = g_system->GetAccelerometer()->GetY();
-		accelZ = g_system->GetAccelerometer()->GetZ();
+		iAccelX = g_system->GetAccelerometer()->GetX();
+		iAccelZ = g_system->GetAccelerometer()->GetZ();
 
 		g_system->GetController()->Update();
 
-		sprintf(accelXline, "x: %4d", accelX);
-		sprintf(accelYline, "y: %4d", accelY);
-		sprintf(accelZline, "z: %4d", accelZ);
+		double fAccelX = ((double)iAccelX - 130.0)/70.0;
+		double fAccelZ = ((double)iAccelZ - 130.0)/70.0;
+
+		sprintf(accelXline, "xAxis: %.2f", fAccelX);
+		sprintf(accelZline, "yAxis: %.2f", fAccelZ);
 
 		DrawText(u8g_font_4x6, accelXline, 0, 6);
-		DrawText(u8g_font_4x6, accelYline, 0, 12);
-		DrawText(u8g_font_4x6, accelZline, 0, 18);
+		DrawText(u8g_font_4x6, accelZline, 0, 12);
 
-		for(unsigned int butCounter = 0; butCounter < 8; butCounter++)
+		//for(unsigned int butCounter = 0; butCounter < 8; butCounter++)
+		//{
+			//if(g_system->GetController()->IsKeyClicked(butCounter))
+			//{
+				//DrawText(u8g_font_4x6, "Key   clicked",	0, 24 + butCounter * 6);
+				//DrawText(u8g_font_4x6, itoa(butCounter, nullptr, 10), 15, 24 + butCounter * 6);
+			//}
+		//}
+		if(g_system->GetController()->IsKeyClicked(0))
 		{
-			if(g_system->GetController()->IsKeyClicked(butCounter))
-			{
-				DrawText(u8g_font_4x6, "Key   clicked",	0, 24 + butCounter * 6);
-				DrawText(u8g_font_4x6, itoa(1, nullptr, 10), 4, 24 + butCounter * 6);
-			}
+			DrawText(u8g_font_4x6, "Key 1 clicked",	0, 24 + 0 * 6);
 		}
+		if(g_system->GetController()->IsKeyClicked(1))
+		{
+			DrawText(u8g_font_4x6, "Key 2 clicked",	0, 24 + 1 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(2))
+		{
+			DrawText(u8g_font_4x6, "Key 3 clicked",	0, 24 + 2 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(3))
+		{
+			DrawText(u8g_font_4x6, "Key 4 clicked",	0, 24 + 3 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(4))
+		{
+			DrawText(u8g_font_4x6, "Key 5 clicked",	0, 24 + 4 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(5))
+		{
+			DrawText(u8g_font_4x6, "Key 6 clicked",	0, 24 + 5 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(6))
+		{
+			DrawText(u8g_font_4x6, "Key 7 clicked",	0, 24 + 6 * 6);
+		}
+		if(g_system->GetController()->IsKeyClicked(7))
+		{
+			DrawText(u8g_font_4x6, "Key 8 clicked",	0, 24 + 7 * 6);
+		}
+
 		//DrawBitmap(rook_bitmap, 40, 40, 8);
 
 		itoa(uiIterator, cIterator, 10);
